@@ -1,0 +1,88 @@
+<html>
+<body> 
+<div class="most-popular-feed-wrapper">
+     <h2 class="most-popular-feed__hed">Most Read</h2>
+     <ul class="most-popular-feed__item-container">
+         <li class="most-popular-feed__item">
+             <a class="most-popular-feed__item-section" href="https://time.com/section/world">World</a>
+             <a href="https://time.com/6957269/king-willem-alexander-kate-middleton-photo-editing-comment/" data-article-id="6957269">
+                 <h3 class="most-popular-feed__item-headline">King Willem-Alexander Pokes Fun at Kate Middleton Photo-Editing Saga</h3>
+             </a>
+         </li>
+         <li class="most-popular-feed__item">
+             <a class="most-popular-feed__item-section" href="https://time.com/section/entertainment">Entertainment</a>
+             <a href="https://time.com/6957230/shohei-ohtani-wife-mamiko-tanaka-basketball-player-revealed/" data-article-id="6957230">
+                 <h3 class="most-popular-feed__item-headline">Who Is Mamiko Tanaka, Shohei Ohtani’s Wife?</h3>
+             </a>
+         </li>
+         <li class="most-popular-feed__item">
+             <a class="most-popular-feed__item-section" href="https://time.com/section/business">Business</a>
+             <a href="https://time.com/6957249/mcdonalds-global-outages-asia-ordering-system-crash/" data-article-id="6957249">
+                 <h3 class="most-popular-feed__item-headline">McDonald’s Crashed? Outages Reported at the Fast-Food Chain’s Outlets Around the World</h3>
+             </a>
+         </li>
+         <li class="most-popular-feed__item">
+             <a class="most-popular-feed__item-section" href="https://time.com/section/entertainment">Entertainment</a>
+             <a href="https://time.com/6898873/apples-never-fall-ending-explained-peacock/" data-article-id="6898873">
+                 <h3 class="most-popular-feed__item-headline">Breaking Down the Surprise Twist at the End of Peacock's Apples Never Fall</h3>
+             </a>
+
+         </li>
+     </ul>
+ </div>
+ <script>
+     // Get all list items inside the ul with the given class
+     const listItems = document.querySelectorAll('.most-popular-feed__item');
+
+     // Initialize an empty array to store the extracted data
+     const extractedTimesData = [];
+
+     // Loop through each list item
+     //listItems.forEach(item => {
+     for (let i = 0; i < 6 && i < listItems.length; i++) {
+         // Get the anchor tags inside the list item
+         //const anchors = item.querySelectorAll('a');
+         const item = listItems[i];
+         const anchors = item.querySelectorAll('a');
+
+         // Extract the inner content of the first and second anchor tags
+         const title = anchors[0].textContent.trim();
+         const link = anchors[1].querySelector('h3').textContent.trim();
+
+         // Push the extracted data into the array
+         extractedTimesData.push({
+             title: title,
+             link: link
+         });
+     }
+     //});
+
+     // Convert the extracted data array to JSON
+     const jsonData = JSON.stringify(extractedTimesData, null, 2);
+
+     // Log the JSON data to the console
+     console.log(jsonData);
+ </script>
+
+  <script>
+      // Fetch the HTML content of the webpage
+      fetch('https://time.com/')
+          .then(response => {
+              // Check if the response is successful
+              if (!response.ok) {
+                  throw new Error('Failed to fetch the webpage');
+              }
+              // Return the HTML content as text
+              return response.text();
+          })
+          .then(html => {
+              // Print the HTML content to the console
+              console.log(html);
+          })
+          .catch(error => {
+              // Log any errors to the console
+              console.error('Error fetching webpage:', error);
+          });
+  </script>
+</body>
+</html>
